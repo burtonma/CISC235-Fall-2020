@@ -1,5 +1,5 @@
-name: CISC124_Fall_2020
+name: CISC235_Fall_2020
 channels:
-  - beakerx
+  - conda-forge
 dependencies:
-  - beakerx_all
+  - beakerx
