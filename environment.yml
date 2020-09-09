@@ -1,0 +1,5 @@
+name: CISC124_Fall_2020
+channels:
+  - beakerx
+dependencies:
+  - beakerx_all
