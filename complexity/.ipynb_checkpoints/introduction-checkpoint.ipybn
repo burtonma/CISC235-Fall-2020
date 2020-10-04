@@ -1,0 +1,128 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "// run this cell to prevent Jupyter from displaying the null output cell\n",
+    "com.twosigma.beakerx.kernel.Kernel.showNullExecutionResult = false;"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Computational complexity\n",
+    "\n",
+    "Computational complexity is often the criterion used to select a particular data structure over another data structure. A commmon example of using computational complexity to choose between different implementations of a data structure is choosing between an array-based list or a linked list implementation. Quoting from [the official Java tutorials](https://docs.oracle.com/javase/tutorial/collections/implementations/list.html):\n",
+    "\n",
+    "> There are two general-purpose List implementations — ArrayList and LinkedList. Most of the time, you'll probably use ArrayList, which offers constant-time positional access and is just plain fast. It does not have to allocate a node object for each element in the List, and it can take advantage of System.arraycopy when it has to move multiple elements at the same time.\n",
+    "\n",
+    "> If you frequently add elements to the beginning of the List or iterate over the List to delete elements from its interior, you should consider using LinkedList. These operations require constant-time in a LinkedList and linear-time in an ArrayList. But you pay a big price in performance. Positional access requires linear-time in a LinkedList and constant-time in an ArrayList. Furthermore, the constant factor for LinkedList is much worse. If you think you want to use a LinkedList, measure the performance of your application with both LinkedList and ArrayList before making your choice; ArrayList is usually faster.\n",
+    "\n",
+    "Space complexity is another criterion that is used to choose between different data structures."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Counting operations\n",
+    "\n",
+    "Before discussing computational complexity, we need to clarify which operations can be completed in constant time. We assume that all fundamental operations take constant time:\n",
+    "\n",
+    "- arithmetic operators `+`, `-`, `*`, `/`, `%` involving integer or floating-point values\n",
+    "- comparison operators `>`, `>=`,`<`, `<=`, `==`, `!=` involving integer or floating-point values\n",
+    "- comparison operators `==`, `!=` involving boolean values\n",
+    "- comparison operators `==`, `!=` involving reference values\n",
+    "- the act of branching in an `if` statement \n",
+    "    - evaluating the branch condition is not necessarily a constant time operation\n",
+    "- array access\n",
+    "- declaring a variable\n",
+    "- the act of assigning a value to a variable\n",
+    "    - evaluating the right-hand side of an assignment statement is not necessarily a constant time operation\n",
+    "- `break`, `continue` statements\n",
+    "- the act of returning a value from a method\n",
+    "    - evaluating the value returned in a `return` statement is not necessarily a constant time \n",
+    "- the act of calling a method\n",
+    "- allocating a constant amount of memory (using `new` in Java)\n",
+    "    - if the array or object size depends on the problem size then this is not a constant time operation\n",
+    "    \n",
+    "An example of a branch condition in an `if` statement that is not a constant operation is:\n",
+    "\n",
+    "```java\n",
+    "// t is a list of characters\n",
+    "if (t.contains('a')) { /* ... */ }\n",
+    "```\n",
+    "\n",
+    "because `contains` potentially tests every element of the list for equality to `'a'`.\n",
+    "\n",
+    "An example of evaluating the right-hand side of an assignment statement that is not a constant operation is:\n",
+    "\n",
+    "```java\n",
+    "// t is a list of characters\n",
+    "boolean b = t.contains('a');\n",
+    "```\n",
+    "\n",
+    "for the same reason as the previous example.\n",
+    "\n",
+    "An example of evaluating the value returned in a `return` statement that is not a constant operation is:\n",
+    "\n",
+    "```java\n",
+    "// arr is an array\n",
+    "return Arrays.copyOf(arr);\n",
+    "```\n",
+    "\n",
+    "because `copyOf` must copy the $n$ elements of `arr`.\n",
+    "\n",
+    "An example of creating a new object that is not a constant time operation is:\n",
+    "\n",
+    "```java\n",
+    "// s is a list\n",
+    "List<Integer> t = new ArrayList<>(s);\n",
+    "```\n",
+    "\n",
+    "because the `ArrayList` constructor copies the $n$ references stored in `s`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Java",
+   "language": "java",
+   "name": "java"
+  },
+  "language_info": {
+   "codemirror_mode": "text/x-java",
+   "file_extension": ".java",
+   "mimetype": "",
+   "name": "Java",
+   "nbconverter_exporter": "",
+   "version": "1.8.0_121"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": false,
+   "sideBar": false,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": false,
+   "toc_window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
